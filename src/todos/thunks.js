@@ -1,4 +1,4 @@
-import { loadTodosInProgress, loadTodosSuccess, loadsTodosFailure } from './actions';
+import { loadTodosInProgress, loadTodosSuccess, loadsTodosFailure, createTodo } from './actions';
 
 // two (optional) arguments are passed to a thunk
 // dispatch helps dispatch an action
@@ -16,6 +16,24 @@ export const loadTodos = () => async (dispatch, getState) => {
         dispatch(displayAlert(e));
     }
 
+};
+
+export const addTodoRequest = text =>  async dispatch => {
+    try {
+        const body = JSON.stringify({ text });
+        const response = await fetch('http://localhost:8080/todos', {
+            headers: {
+                'Content-TYpe': 'application/json',
+            },
+            method: 'post',
+            body,
+        })
+
+        const todo = await response.json();
+        dispatch(createTodo(todo));
+    } catch (error) {
+        dispatch(displayAlert(error));
+    }
 };
 
 export const displayAlert = text => () => {

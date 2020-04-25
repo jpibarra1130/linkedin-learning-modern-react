@@ -4,9 +4,9 @@ export const CREATE_TODO = 'CREATE_TODO';
 // once this action is triggered
 // this is called `action creators`
 // best practice is to use action creators instead of bare actions
-export const createTodo = text => ({
+export const createTodo = todo => ({
     type: CREATE_TODO,
-    payload: { text },
+    payload: { todo },
 });
 
 export const REMOVE_TODO = 'REMOVE_TODO';

@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 // import something specific from the module
 // you don't need to put this if you're using a default inside
 // the module you're importing from
-import { createTodo } from './actions';
+import { addTodoRequest } from './thunks';
 import './NewTodoForm.css'
 
 const NewTodoForm = ({ todos, onCreatePressed }) => {
@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 // dispatch argument allows our components to trigger an action
 // that our redux components will respond to
 const mapDispatchToProps = dispatch => ({
-    onCreatePressed: text => dispatch(createTodo(text)),
+    onCreatePressed: text => dispatch(addTodoRequest(text)),
 });
 
 // mapStateToProps and mapDispatchToProps are both optional
