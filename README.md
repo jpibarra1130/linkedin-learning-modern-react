@@ -14,6 +14,11 @@ More info in [Redux.js](https://redux.js.org/introduction/getting-started)
 2. Keep Redux actions and async operations out of your reducers. Fetching data from the network should NOT be on the reducers.
 3. Think carefully about connecting components. A component connected to the store makes it less reusable to other parts of the application so need to make sure that you're connecting only when necessary. Avoid connecting components to the store which we plan to re-use.
 
+## Additional Notes
+Best to remember the lifecycle because that will clear up where the change should be happening:
+
+component -> thunk (if there's side-effect) -> action -> reducer -> component
+
 
 ### Redux-Thunk
 Side-effect Library used to handle side-effects (e.g. network calls, data loading)
