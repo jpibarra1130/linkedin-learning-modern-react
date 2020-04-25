@@ -1,10 +1,10 @@
 import { 
     CREATE_TODO, 
-    REMOVE_TODO, 
     COMPLETE_TODO,
     LOAD_TODOS_IN_PROGRESS,
     LOAD_TODOS_SUCCESS,
     LOAD_TODOS_FAILURE,
+    REMOVE_TODO,
  } from './actions';
 
  export const isLoading = (state = false, action) => {
@@ -35,11 +35,6 @@ export const todos = (state = [], action) => {
         // this does not mutate the state
         return state.concat(todo);
     }
-    case REMOVE_TODO: {
-        const { text } = payload;
-        return state.filter(todo => todo.text !== text);
-    }
-
     case COMPLETE_TODO: {
         const { text } = payload;
         return state.map(todo => {
@@ -50,6 +45,10 @@ export const todos = (state = [], action) => {
         });
     }
 
+    case REMOVE_TODO: {
+        const { todo: todoToRemove } = payload;
+        return state.filter(todo => todo.id !== todoToRemove.id);
+    }
     case LOAD_TODOS_SUCCESS: {
         const { todos } = payload;
         return todos;
