@@ -1,4 +1,10 @@
-import { loadTodosInProgress, removeTodo, loadTodosSuccess, loadsTodosFailure, createTodo } from './actions';
+import { 
+    loadTodosInProgress, 
+    removeTodo, 
+    completeTodo,
+    loadTodosSuccess, 
+    loadsTodosFailure, 
+    createTodo } from './actions';
 
 // two (optional) arguments are passed to a thunk
 // dispatch helps dispatch an action
@@ -15,7 +21,6 @@ export const loadTodos = () => async (dispatch, getState) => {
         dispatch(loadsTodosFailure());
         dispatch(displayAlert(e));
     }
-
 };
 
 export const addTodoRequest = text =>  async dispatch => {
@@ -31,6 +36,22 @@ export const addTodoRequest = text =>  async dispatch => {
 
         const todo = await response.json();
         dispatch(createTodo(todo));
+    } catch (error) {
+        dispatch(displayAlert(error));
+    }
+};
+
+export const completeTodoRequest = id =>  async dispatch => {
+    try {
+        const response = await fetch(`http://localhost:8080/todos/${id}/completed`, {
+            headers: {
+                'Content-TYpe': 'application/json',
+            },
+            method: 'post',
+        })
+
+        const updatedTodo = await response.json();
+        dispatch(completeTodo(updatedTodo));
     } catch (error) {
         dispatch(displayAlert(error));
     }

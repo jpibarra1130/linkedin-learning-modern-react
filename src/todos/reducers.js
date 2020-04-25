@@ -36,9 +36,9 @@ export const todos = (state = [], action) => {
         return state.concat(todo);
     }
     case COMPLETE_TODO: {
-        const { text } = payload;
+        const { todo: updatedTodo } = payload;
         return state.map(todo => {
-            if (todo.text === text) {
+            if (todo.id === updatedTodo.id) {
                 return { ...todo, isCompleted: true };
             }
             return todo;
