@@ -1,4 +1,25 @@
-import { CREATE_TODO, REMOVE_TODO, COMPLETE_TODO } from './actions';
+import { 
+    CREATE_TODO, 
+    REMOVE_TODO, 
+    COMPLETE_TODO,
+    LOAD_TODOS_IN_PROGRESS,
+    LOAD_TODOS_SUCCESS,
+    LOAD_TODOS_FAILURE,
+ } from './actions';
+
+ export const isLoading = (state = false, action) => {
+    const { type } = action;
+
+    switch (type) {
+        case LOAD_TODOS_IN_PROGRESS:
+            return true;
+        case LOAD_TODOS_SUCCESS:
+        case LOAD_TODOS_FAILURE:
+            return false;
+        default:
+            return state;
+    }
+ };
 
 // anytime an action is called, this is triggered
 // it will receive the action AND payload

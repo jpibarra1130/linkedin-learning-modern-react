@@ -7,15 +7,19 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 // side-effect library to separate side-effects
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { todos } from './todos/reducers';
 
+
+import { todos, isLoading } from './todos/reducers';
+
+// list of reducers to hookup
 const reducers = {
     todos,
+    isLoading,
 };
 
 const rootReducer = combineReducers(reducers);
 
-// how to store and persist our data
+// how to store and persist our data beyond browser refresh
 const persistConfig = {
     key: 'root',
     storage,
