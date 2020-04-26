@@ -9,12 +9,11 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-import { todos, isLoading } from './todos/reducers';
+import { todos } from './todos/reducers';
 
 // list of reducers to hookup
 const reducers = {
     todos,
-    isLoading,
 };
 
 const rootReducer = combineReducers(reducers);
